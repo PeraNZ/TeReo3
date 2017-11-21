@@ -28,12 +28,21 @@ const connector = new builder.ChatConnector({
 });
 const bot = new builder.UniversalBot(connector);
 
+var azure = require('botbuilder-azure'); 
+
 //=========================================================
 // Bots Middleware
 //=========================================================
 
 bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
 bot.use(builder.Middleware.sendTyping());
+
+var documentDbOptions = {
+    host: 'https://pera.documents.azure.com:443/', 
+    masterKey: 'xwIwYBgtr5pjB5Ja9am5sHfxAvny3lr1ga4tSRcaMGZSxO0gd4kwspg6Qn0V6ht5qdYIKDmaTcdWevYzHCqMng==', 
+    database: 'botdocs',   
+    collection: 'botdata'
+};
 
 //=========================================================
 // Bots Global Actions
