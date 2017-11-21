@@ -30,6 +30,14 @@ const bot = new builder.UniversalBot(connector);
 
 var azure = require('botbuilder-azure'); 
 
+var docDbClient = new azure.DocumentDbClient(documentDbOptions);
+
+var cosmosStorage = new azure.AzureBotStorage({ gzipData: false }, docDbClient);
+var bot = new builder.UniversalBot(connector, function (session) {
+     // ... Bot code ...
+})
+.set('storage', cosmosStorage);
+
 //=========================================================
 // Bots Middleware
 //=========================================================
